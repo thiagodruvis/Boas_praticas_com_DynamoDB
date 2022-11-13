@@ -2,7 +2,7 @@
 
 ## Criar uma tabela
 
-  aws dynamodb create-table \
+ > aws dynamodb create-table \
     --table-name Musica \
     --attribute-definitions \
         AttributeName=Artista,AttributeType=S \
@@ -15,18 +15,18 @@
 
 ## Inserir um item
 
-  aws dynamodb put-item \
+ > aws dynamodb put-item \
     --table-name Musica \
     --item file://itemmusic.json \        
 
 ## Inserir múltiplos itens    
 
-  aws dynamodb batch-write-item \
+ > aws dynamodb batch-write-item \
     --request-items file://batchmusic.json
 
 ## Criar um index global secundario baseado no título do álbum
 
-  aws dynamodb update-table \
+ > aws dynamodb update-table \
     --table-name Musica \
     --attribute-definitions AttributeName=TituloAlbum,AttributeType=S \
     --global-secondary-index-updates \
@@ -36,7 +36,7 @@
 
 ## Criar um index flobal secundário baseadono nome do artista e no título do álbum            
 
-  aws dynamodb update-table \
+ > aws dynamodb update-table \
     --table-name Musica \
     --attribute-definitions\
         AttributeName=Artista,AttributeType=S \
@@ -48,7 +48,7 @@
 
 ## Criar um index global secundário baseado no título da música e no ano
 
-  aws dynamodb update-table \
+ > aws dynamodb update-table \
     --table-name Musica \
     --attribute-definitions\
         AttributeName=TituloMusica,AttributeType=S \
@@ -60,7 +60,7 @@
 
 ## Pesquisar item por artista            
 
-  aws dynamodb query \
+ > aws dynamodb query \
     --table-name Musica \
     --key-condition-expression "Artista = :artista" \
     --expression-attribute-values  '":artista":{"S":"Lamparina"}}'
@@ -75,7 +75,7 @@
 
 ## Pesquisa pelo index secundário baseado no título da música e no ano
 
-  aws dynamodb query \
+ > aws dynamodb query \
     --table-name Musica \
     --index-name TituloMusicaAno-index \
     --key-condition-expression "TituloMusica = :v_musica and AnoMusica = :v_ano" \
